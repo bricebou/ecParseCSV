@@ -12,7 +12,7 @@ class Plugin extends \Phile\Plugin\AbstractPlugin {
 
 	protected $events = ['template_engine_registered' => 'output', 'request_uri' => 'request_uri'];
 
-	public function request_uri($data = null) {
+	protected function request_uri($data = null) {
 		$uri = $data['uri'];
 		/********************************************************
 		* from the phileTags plugin by Philipp Schmitt
@@ -32,7 +32,7 @@ class Plugin extends \Phile\Plugin\AbstractPlugin {
         $this->current_tag = htmlentities(urldecode($current_tag_raw), 0, "UTF-8");
   }
 
-	public function parse_file($file) {
+	protected function parse_file($file) {
 
 		$csv = new \parseCSV();
 		$csv->delimiter = ";";
@@ -52,7 +52,8 @@ class Plugin extends \Phile\Plugin\AbstractPlugin {
 			$groupe = "";
 
 			if ($this->is_tag) {
-				if (isset($row['Groupe']) && $row['Groupe'] == $this->current_tag) {
+
+				if (isset($row['Groupe']) && strpos($row['Groupe'], html_entity_decode($this->current_tag)) !== false) {
 					if ($row['Année']) {
 						$annee = "<span class='playlist_year'> (".$row['Année'].")</span>";
 					}
@@ -85,7 +86,7 @@ class Plugin extends \Phile\Plugin\AbstractPlugin {
 		return $ret;
 	}
 
-	public function output($data = null) {
+	protected function output($data = null) {
    	$CSVtoTable = new \Twig_SimpleFunction('CSVtoTable', function ($file) {
    		return $this->parse_file($file);
    	});
