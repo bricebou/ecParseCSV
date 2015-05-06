@@ -16,6 +16,5 @@
         "phile-cms/phile": ">=1",
         "phile-cms/plugin-installer-plugin": ">=1",
         "parsecsv/php-parsecsv": "0.4.*"
-    },
-    
+    }
 }
