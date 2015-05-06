@@ -1,0 +1,20 @@
+{
+    "name": "bricebou/ecparsecsv",
+    "type": "phile-plugin",
+    "license": "MIT",
+    "keywords": ["cms", "phile", "philecms", "parsecsv"],
+    "authors": [
+        {
+            "name": "Brice Boucard",
+            "email": "brice.boucard@gmail.com",
+            "homepage": "http://momh.fr/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "phile-cms/phile": ">=1",
+        "phile-cms/plugin-installer-plugin": ">=1",
+        "parsecsv/php-parsecsv": "0.4.*"
+    },
+    
+}
