@@ -1,5 +1,6 @@
 {
     "name": "bricebou/ecparsecsv",
+    "description": "A small plugin for PhileCMS that parse a CSV file into a table to display the playlists on leffetcoleoptere.bz",
     "type": "phile-plugin",
     "license": "MIT",
     "keywords": ["cms", "phile", "philecms", "parsecsv"],
