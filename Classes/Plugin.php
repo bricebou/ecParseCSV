@@ -5,6 +5,7 @@ namespace Phile\Plugin\bricebou\ecParseCSV;
 /**
  *
  * @author Brice Boucard
+ * @link https://github.com/bricebou/ecParseCSV
  * @license http://bricebou.mit-license.org/
  */
 class Plugin extends \Phile\Plugin\AbstractPlugin {
