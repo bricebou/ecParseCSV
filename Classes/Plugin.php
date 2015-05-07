@@ -39,12 +39,12 @@ class Plugin extends \Phile\Plugin\AbstractPlugin {
 		$csv->parse($file);
 
 		if ($this->is_tag) {
-			$tableHead = "<table><thead><tr><th>Titre</th><th>Album</th></tr></thead><tbody>";
+			$tableHead = "<div  class='table-respond'><table><thead><tr><th>Titre</th><th>Album</th></tr></thead><tbody>";
 		}
 		else {
-			$tableHead = "<table><thead><tr><th>Titre</th><th>Artiste</th><th>Album</th></tr></thead><tbody>";
+			$tableHead = "<div  class='table-respond'><table><thead><tr><th>Titre</th><th>Artiste</th><th>Album</th></tr></thead><tbody>";
 		}
-		$tableEnd = "</tbody></table>";
+		$tableEnd = "</tbody></table></div>";
 		$tableBody = "";
 
 		foreach ($csv->data as $key => $row) {
