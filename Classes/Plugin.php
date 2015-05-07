@@ -53,7 +53,7 @@ class Plugin extends \Phile\Plugin\AbstractPlugin {
 
 			if ($this->is_tag) {
 
-				if (isset($row['Groupe']) && strpos($row['Groupe'], html_entity_decode($this->current_tag)) !== false) {
+				if (isset($row['Groupe']) && strpos(html_entity_decode($row['Groupe']), html_entity_decode($this->current_tag)) !== false) {
 					if ($row['Année']) {
 						$annee = "<span class='playlist_year'> (".$row['Année'].")</span>";
 					}
