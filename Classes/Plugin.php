@@ -9,6 +9,8 @@ namespace Phile\Plugin\bricebou\ecParseCSV;
  * @license http://bricebou.mit-license.org/
  */
 class Plugin extends \Phile\Plugin\AbstractPlugin {
+	private $tag_ok;
+  private $tag_name;
 
 	protected $events = ['template_engine_registered' => 'output', 'request_uri' => 'request_uri'];
 
@@ -23,13 +25,13 @@ class Plugin extends \Phile\Plugin\AbstractPlugin {
         # Remove the leading '/'
         $dname = substr($dname, 1);
     }
-    $this->is_tag = ($dname == "tag");
+    $this->tag_ok = ($dname == "tag");
 
     // If the URL does start with 'tag/', grab the rest of the URL
-    $current_tag_raw = basename($uri);
+    $tag_name_raw = basename($uri);
 
-    if ($this->is_tag)
-        $this->current_tag = htmlentities(urldecode($current_tag_raw), 0, "UTF-8");
+    if ($this->tag_ok)
+        $this->tag_name = htmlentities(urldecode($tag_name_raw), 0, "UTF-8");
   }
 
 	protected function parse_file($file) {
@@ -38,7 +40,7 @@ class Plugin extends \Phile\Plugin\AbstractPlugin {
 		$csv->delimiter = ";";
 		$csv->parse($file);
 
-		if ($this->is_tag) {
+		if ($this->tag_ok) {
 			$tableHead = "<div  class='table-respond'><table><thead><tr><th>Titre</th><th>Album</th></tr></thead><tbody>";
 		}
 		else {
@@ -51,9 +53,9 @@ class Plugin extends \Phile\Plugin\AbstractPlugin {
 			$annee = "";
 			$groupe = "";
 
-			if ($this->is_tag) {
+			if ($this->tag_ok) {
 
-				if (isset($row['Groupe']) && strpos(html_entity_decode($row['Groupe']), html_entity_decode($this->current_tag)) !== false) {
+				if (isset($row['Groupe']) && strpos(html_entity_decode($row['Groupe']), html_entity_decode($this->tag_name)) !== false) {
 					if ($row['Année']) {
 						$annee = "<span class='playlist_year'> (".$row['Année'].")</span>";
 					}
